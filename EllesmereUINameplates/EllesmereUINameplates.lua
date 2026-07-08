@@ -222,6 +222,7 @@ local defaults = {
     executeRangeEnabled = false,
     executeRangeColor = { r = 1, g = 0.1, b = 0.1 },
     executeRangeColorEnabled = true,
+    executeRangeGlowColor = { r = 1, g = 0.1, b = 0.1 },
     executeRangeMode = "auto",
     executeRangeCustomPct = 20,
     executeRangeGlowStyle = 0,
@@ -6139,7 +6140,8 @@ do
     -- (Fury) on a talented Warrior; adjust if the Midnight IDs differ.
     local E = {
         pct = 20,
-        r = 1, g = 0.1, b = 0.1,
+        r = 1, g = 0.1, b = 0.1,      -- bar recolor
+        gr = 1, gg = 0.1, gb = 0.1,   -- glow
         colorOn = true,
         curves = {}, n = 0,
         AUTO = { WARRIOR = 20, HUNTER = 20, PALADIN = 20 },
@@ -6199,7 +6201,7 @@ do
             local hgt = plate.health:GetHeight() or 17
             -- StartGlow stops any previous engine itself, so style switches
             -- on a reused wrapper are safe.
-            Glows.StartGlow(wrapper, E.glowStyle, w, E.r, E.g, E.b, nil, hgt)
+            Glows.StartGlow(wrapper, E.glowStyle, w, E.gr, E.gg, E.gb, nil, hgt)
         elseif wrapper then
             Glows.StopGlow(wrapper)
         end
@@ -6345,6 +6347,8 @@ do
         end
         local c = db.executeRangeColor or defaults.executeRangeColor
         E.r, E.g, E.b = c.r, c.g, c.b
+        local gc = db.executeRangeGlowColor or defaults.executeRangeGlowColor
+        E.gr, E.gg, E.gb = gc.r, gc.g, gc.b
         if (db.executeRangeMode or defaults.executeRangeMode) == "custom" then
             E.pct = db.executeRangeCustomPct or defaults.executeRangeCustomPct
         else
