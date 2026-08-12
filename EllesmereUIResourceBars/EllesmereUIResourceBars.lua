@@ -617,11 +617,13 @@ local function GetSecondaryResource()
     elseif classFile == "WARRIOR" and spec == 1
            and ERB.db and ERB.db.profile and ERB.db.profile.secondary
            and ERB.db.profile.secondary.armsSweepingStrikesBar then
-        -- Arms: Sweeping Strikes charges (12, or 18 with Improved Sweeping
-        -- Strikes). Base max here; BuildBars refreshes from the tracker.
+        -- Arms: Sweeping Strikes charges. 12.1 caps the buff at 18 for
+        -- everyone (12 from the ability + 6 from Broad Strokes; Improved
+        -- Sweeping Strikes was removed), so the base max here matches the
+        -- tracker's flat cap; BuildBars still refreshes from the tracker.
         -- Toggle-gated (opt-in, default off); the Unit Frames and personal
         -- Nameplate readouts show the charges regardless of this toggle.
-        return { power = "SWEEPING_STRIKES", max = 12, type = "custom" }
+        return { power = "SWEEPING_STRIKES", max = 18, type = "custom" }
     end
 
     return nil

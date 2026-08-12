@@ -187,7 +187,7 @@ initFrame:SetScript("OnEvent", function(self)
     local _previewBarFillPct = 65 -- randomized each page visit (30-80)
 
     -- Discrete pip count for the current spec's preview: use the real
-    -- resource max (Fury Whirlwind 4, Arms Sweeping Strikes 12/18, DK runes
+    -- resource max (Fury Whirlwind 4, Arms Sweeping Strikes 18, DK runes
     -- 6, Maelstrom Weapon 5/10, ...) so the preview matches the live bar;
     -- generic 5 as fallback when there is no discrete secondary.
     local function PreviewPipCount()
@@ -424,7 +424,7 @@ initFrame:SetScript("OnEvent", function(self)
                     filledCount = _previewPipCount
                     -- _previewPipCount is randomized against the generic
                     -- 5-pip preview; rescale for specs with other pip counts
-                    -- (e.g. 12/18 Sweeping Strikes charges).
+                    -- (e.g. 18 Sweeping Strikes charges).
                     if numPips ~= 5 then
                         filledCount = math.max(1, math.min(numPips,
                             math.floor(_previewPipCount / 5 * numPips + 0.5)))
